@@ -191,7 +191,7 @@ const StarterScreen = ({ route, navigation }) => {
           data={restaurant.menu.starters}
           keyExtractor={(item) => item.item}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => addToOrder(item)} style={styles.menuItem}>
+            <TouchableOpacity onPress={() => aOrderddTo(item)} style={styles.menuItem}>
               <Image source={item.image} style={styles.menuImage} />
               <Text style={styles.menuText}>
                 {item.item} - R{convertToZAR(item.price)}
@@ -280,9 +280,10 @@ const BasketScreen = ({ route, navigation }) => {
   const { order } = route.params;
 
   const total = order.reduce((sum, item) => sum + parseFloat(convertToZAR(item.price)), 0);
-
+ const totalnumber = order.length
   const handleCheckout = () => {
     Alert.alert('Order Placed', `Your total is R${total}. Thank you!`);
+     Alert.alert('Total number of items', `Your total is {totalnumber}. Thank you!`);
     navigation.navigate('Home');
   };
 
@@ -303,6 +304,8 @@ const BasketScreen = ({ route, navigation }) => {
           )}
         />
         <Text style={styles.header}>Total: R{total.toFixed(2)}</Text>
+        <Text style={styles.header}>totalnumber:{totalnumber}</Text>
+
         <Button title="Checkout" onPress={handleCheckout} />
         <Button title="Back to Menu" onPress={() => navigation.goBack()} />
       </View>
